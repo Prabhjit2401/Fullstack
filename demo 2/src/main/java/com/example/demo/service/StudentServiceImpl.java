@@ -23,6 +23,16 @@ public class StudentServiceImpl implements StudentService{
         return studentRepository.save(student);
     }
 
+    public void deleteStudent(Integer studentId){
+//        studentRepository.deleteById(studentId);
+        boolean exists = studentRepository.existsById(studentId);
+        if(!exists)
+        {
+            throw new IllegalArgumentException("The Id "+ studentId +" doesn't exists");
+        }
+        studentRepository.deleteById(studentId);
+    }
+
     // use cntrl + o to auto type the required code from the iterface
     @Override
     public List<Student> getStudents() {

@@ -9,6 +9,7 @@ import java.util.List;
 
 @RequestMapping("/student")
 @RestController
+@CrossOrigin
 public class StudentController {
 
     private final StudentService studentService;
@@ -32,4 +33,12 @@ public class StudentController {
         return studentService.getStudents();
     }
 
+    @DeleteMapping(path="{studentId}")
+    public String deleteStudent(@PathVariable("studentId") Integer studentId){
+        studentService.deleteStudent(studentId);
+        return("student with id "+ studentId + " has been deleted");
+    }
+
 }
+
+//DELETE http://localhost:8080/api/v1/student/{{studentId}}
